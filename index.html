@@ -909,8 +909,8 @@ dialog.fiche{overscroll-behavior:contain}
         <p class="chapo">Une céramique, une toile ou une douceur de l'épicerie vous a touché ? Il y a deux façons de faire.</p>
       </div>
       <ol class="etapes">
-        <li><span class="num">1</span><h3>Elle est encore à vendre</h3><p>Offrez-la, ou offrez-vous-la : ouvrez-la et commandez-la directement ici, sur le site.</p></li>
-        <li><span class="num">2</span><h3>Parlez-en avec Charlotte</h3><p>Pas besoin d'avoir une idée précise : écrivez-lui, appelez-la ou parlez-en de vive voix. Une envie, un cadeau à faire, du sur-mesure… ou même une pièce totalement surprise.</p></li>
+        <li><span class="num">1</span><h3>Elle est encore à vendre</h3><p>Ouvrez-la et commandez-la directement sur le site.</p></li>
+        <li><span class="num">2</span><h3>Parlez-en avec Charlotte</h3><p>Écrivez-lui ou appelez-la, même sans idée précise. Elle peut aussi vous faire une surprise.</p></li>
       </ol>
       <p class="acheter-note">Dans les deux cas, elle vous la remet en main propre, ou l'emballe avec soin pour vous l'envoyer. Le règlement se fait simplement, par Lydia, Wero ou virement. <a href="#contact">Écrire à Charlotte ↓</a></p>
     </div>
@@ -1379,7 +1379,7 @@ function ouvrirFiche(o) {
     msg.textContent = 'Elle vous plaît ? Envoyez un cœur à Charlotte.';
     actions.innerHTML = '<button type="button" class="btn btn-encre' + (AIMES[o.id] ? ' aime' : '') + '" data-coeur="' + o.id + '" data-titre="' + esc(o.titre) + '" aria-pressed="' + (AIMES[o.id] ? 'true' : 'false') + '">' + (AIMES[o.id] ? '\u2665 C\u0153ur envoy\u00e9 \u00e0 Charlotte' : '\u2665 Envoyer un c\u0153ur') + '</button>';
   } else {
-    msg.textContent = 'Elle est encore à vendre : offrez-la, ou offrez-vous-la, en la commandant ici.';
+    msg.textContent = 'Elle est encore à vendre : vous pouvez la commander ici.';
     actions.innerHTML = '';
   }
   prepareAchat(o, s);
