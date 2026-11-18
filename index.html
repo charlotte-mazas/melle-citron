@@ -590,6 +590,41 @@ dialog.fiche{overscroll-behavior:contain}
 .livre-ferme:hover .fan.f3{transform:translate(-28%,10%) rotate(7deg)}
 @media (max-width:640px){.livre-objet{min-height:370px}}
 @media (prefers-reduced-motion:reduce){.double.tourne,.piece-coeur.aime{animation:none}}
+
+/* S'offrir une pièce : deux cartes */
+.facons{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(14px,2vw,24px)}
+.facon{background:#fff;border:1px solid rgba(21,17,14,.1);border-radius:10px;padding:clamp(22px,2.6vw,32px);display:flex;flex-direction:column;gap:12px;box-shadow:0 14px 34px -24px rgba(21,17,14,.35)}
+.facon-tete{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:2px}
+.facon-icone{display:grid;place-items:center;width:50px;height:50px;border-radius:50%;background:var(--lin);color:var(--cobalt)}
+.facon-icone svg{width:25px;height:25px}
+.facon-num{font-family:var(--f-serif);font-style:italic;font-size:2.7rem;line-height:1;color:var(--cobalt);opacity:.28}
+.facon h3{font-family:var(--f-serif);font-style:italic;font-weight:400;font-size:clamp(1.45rem,1.15rem + .9vw,1.8rem);line-height:1.15;letter-spacing:0;text-transform:none;margin:0}
+.facon p{margin:0;color:#3b332b;line-height:1.55}
+.facon-repere{display:flex;align-items:center;flex-wrap:wrap;gap:8px;font-size:.92rem}
+.facon-actions{margin-top:auto;padding-top:8px;display:flex;flex-wrap:wrap;gap:10px}
+.acheter-infos{list-style:none;margin:clamp(18px,2.4vw,26px) 0 0;padding:0;display:flex;flex-wrap:wrap;gap:12px 40px}
+.acheter-infos li{display:flex;align-items:center;gap:12px;color:#3b332b;font-size:.97rem;line-height:1.4}
+.info-icone{display:grid;place-items:center;flex:none;width:40px;height:40px;border-radius:50%;background:#fff;color:var(--cobalt);box-shadow:inset 0 0 0 1px rgba(21,17,14,.1)}
+.info-icone svg{width:20px;height:20px}
+@media (max-width:760px){.facons{grid-template-columns:1fr}}
+/* Contact : téléphone et e-mail en tête */
+.coordonnees{grid-template-columns:repeat(6,1fr)}
+.coordonnees > div{grid-column:span 2}
+.coordonnees > div:nth-child(-n+2){grid-column:span 3}
+.coordonnees > div:nth-child(n+3){border-top:1px solid rgba(21,17,14,.25)}
+.coordonnees > div:nth-child(3){padding-left:0;border-left:0}
+.coord-mail dd{font-size:clamp(1.1rem,.8rem + 1.1vw,1.75rem);overflow-wrap:anywhere}
+@media (max-width:900px){
+  .coordonnees{grid-template-columns:1fr 1fr}
+  .coordonnees > div,.coordonnees > div:nth-child(-n+2){grid-column:auto}
+  .coordonnees > div:nth-child(odd){padding-left:0;border-left:0}
+  .coordonnees > div:nth-child(even){padding-left:20px;border-left:1px solid rgba(21,17,14,.25)}
+}
+@media (max-width:540px){
+  .coordonnees{grid-template-columns:1fr}
+  .coordonnees > div,.coordonnees > div:nth-child(even){padding-left:0;border-left:0}
+  .coordonnees > div + div{border-top:1px solid rgba(21,17,14,.25)}
+}
 </style>
 </head>
 <body>
@@ -906,13 +941,27 @@ dialog.fiche{overscroll-behavior:contain}
           <p class="numero">07 — S'offrir une pièce</p>
           <h2 id="t-acheter">Envie de vous <em>offrir</em> une pièce ?</h2>
         </div>
-        <p class="chapo">Une céramique, une toile ou une douceur de l'épicerie vous a touché ? Il y a deux façons de faire.</p>
+        <p class="chapo">Une céramique, une toile ou une douceur vous a touché ? Il y a deux façons de faire.</p>
       </div>
-      <ol class="etapes">
-        <li><span class="num">1</span><h3>Elle est encore à vendre</h3><p>Ouvrez-la et commandez-la directement sur le site.</p></li>
-        <li><span class="num">2</span><h3>Parlez-en avec Charlotte</h3><p>Écrivez-lui ou appelez-la, même sans idée précise. Elle peut aussi vous faire une surprise.</p></li>
-      </ol>
-      <p class="acheter-note">Dans les deux cas, elle vous la remet en main propre, ou l'emballe avec soin pour vous l'envoyer. Le règlement se fait simplement, par Lydia, Wero ou virement. <a href="#contact">Écrire à Charlotte ↓</a></p>
+      <div class="facons">
+        <article class="facon">
+          <div class="facon-tete"><span class="facon-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg></span><span class="facon-num" aria-hidden="true">1</span></div>
+          <h3>Elle est encore à vendre</h3>
+          <p>Ouvrez-la et commandez-la directement sur le site.</p>
+          <p class="facon-repere">Repérez l'étiquette <span class="badge badge-prix">À vendre</span> dans la galerie.</p>
+          <div class="facon-actions"><a class="btn btn-encre" href="#la-galerie">Voir la galerie</a></div>
+        </article>
+        <article class="facon">
+          <div class="facon-tete"><span class="facon-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.4L3.5 20.5l1.6-4.8A8.4 8.4 0 1 1 21 11.5z"/><path d="M8.5 11.5h.01M12.5 11.5h.01M16.5 11.5h.01"/></svg></span><span class="facon-num" aria-hidden="true">2</span></div>
+          <h3>Parlez-en avec Charlotte</h3>
+          <p>Écrivez-lui ou appelez-la, même sans idée précise. Elle peut aussi vous faire une surprise.</p>
+          <div class="facon-actions"><a class="btn btn-encre" href="mailto:vaillant.charlotte1@gmail.com?subject=Une%20pi%C3%A8ce%20de%20Melle%20Citron">Lui écrire</a><a class="btn btn-contour" href="tel:+33613805593">L'appeler</a></div>
+        </article>
+      </div>
+      <ul class="acheter-infos">
+        <li><span class="info-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="m3 8 9 5 9-5M12 13v8"/></svg></span><span><strong>Remise en main propre</strong>, ou emballée avec soin et envoyée</span></li>
+        <li><span class="info-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M10.5 18h3"/></svg></span><span><strong>Réglée simplement</strong> par Lydia, Wero ou virement</span></li>
+      </ul>
     </div>
   </section>
 
@@ -923,6 +972,7 @@ dialog.fiche{overscroll-behavior:contain}
       <p class="chapo">Pour vous offrir une pièce, goûter une douceur ou imaginer un projet ensemble, écrivez à Charlotte ou appelez-la.</p>
       <dl class="coordonnees">
         <div><dt>Téléphone</dt><dd><a href="tel:+33613805593">06 13 80 55 93</a></dd></div>
+        <div class="coord-mail"><dt>E-mail</dt><dd><a href="mailto:vaillant.charlotte1@gmail.com">vaillant.charlotte1@gmail.com</a></dd></div>
         <div><dt>Instagram</dt><dd><a href="https://www.instagram.com/melle_citron/" target="_blank" rel="noopener">@melle_citron</a></dd></div>
         <div><dt>Le collectif</dt><dd><a href="https://www.instagram.com/collectif_osage/" target="_blank" rel="noopener">@collectif_osage</a></dd></div>
         <div><dt>L'atelier</dt><dd>Paris 11<sup>e</sup></dd></div>
