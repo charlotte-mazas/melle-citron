@@ -292,6 +292,12 @@ html{scroll-padding-top:76px}
 .achat-etapes li::before{content:counter(etape);position:absolute;left:0;top:0;width:24px;height:24px;border-radius:50%;background:var(--encre);color:var(--lin);font-weight:700;font-size:.78rem;display:grid;place-items:center}
 .achat-etapes .btn{margin-top:10px;padding:12px 16px}
 .achat-etapes strong{font-weight:700}
+.achat-form{margin-top:0;padding-top:0;border-top:0}
+.achat-adresse{display:grid;gap:12px}
+.achat-adresse[hidden],.achat-form[hidden]{display:none}
+.achat-paiement{background:var(--lin);border-radius:6px;padding:16px 18px;display:grid;gap:10px}
+.achat-paiement p{margin:0;font-size:.95rem;line-height:1.5}
+.achat-copies{display:flex;flex-wrap:wrap;gap:14px}
 .btn-lien{appearance:none;background:none;border:0;padding:0;margin:0 0 0 4px;font:inherit;font-size:.86rem;font-weight:650;color:var(--cobalt);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
 
 .pied{background:var(--encre);color:rgba(243,237,226,.72);padding-block:34px;font-size:.88rem}
@@ -903,10 +909,10 @@ dialog.fiche{overscroll-behavior:contain}
         <p class="chapo">Une céramique, une toile ou une douceur de l'épicerie vous a touché ? Il y a deux façons de faire.</p>
       </div>
       <ol class="etapes">
-        <li><span class="num">1</span><h3>Elle est disponible</h3><p>Si la pièce affiche un prix, elle est encore à vendre : ouvrez-la et commandez-la directement ici, sur le site.</p></li>
-        <li><span class="num">2</span><h3>Vous avez une idée</h3><p>Une envie précise, du sur-mesure, un cadeau à faire ? Écrivez un petit mot à Charlotte : elle imagine la pièce avec vous.</p></li>
+        <li><span class="num">1</span><h3>Elle est encore à vendre</h3><p>Offrez-la, ou offrez-vous-la : ouvrez-la et commandez-la directement ici, sur le site.</p></li>
+        <li><span class="num">2</span><h3>Parlez-en avec Charlotte</h3><p>Pas besoin d'avoir une idée précise : écrivez-lui, appelez-la ou parlez-en de vive voix. Une envie, un cadeau à faire, du sur-mesure… ou même une pièce totalement surprise.</p></li>
       </ol>
-      <p class="acheter-note">Dans les deux cas, elle vous la remet en main propre, ou l'emballe avec soin pour vous l'envoyer. Le règlement se fait simplement, par Wero ou Lydia. <a href="#contact">Écrire à Charlotte ↓</a></p>
+      <p class="acheter-note">Dans les deux cas, elle vous la remet en main propre, ou l'emballe avec soin pour vous l'envoyer. Le règlement se fait simplement, par Lydia, Wero ou virement. <a href="#contact">Écrire à Charlotte ↓</a></p>
     </div>
   </section>
 
@@ -948,18 +954,38 @@ dialog.fiche{overscroll-behavior:contain}
       <div class="fiche-actions" id="fiche-actions"></div>
       <div class="achat" id="achat" hidden>
         <p class="achat-titre" id="achat-titre"></p>
-        <p class="achat-unique">Pièce unique, envoyée en Colissimo (La Poste).</p>
-        <div class="achat-boutons">
-          <a class="btn btn-encre" id="achat-carte" href="#" target="_blank" rel="noopener">Carte bancaire ou Apple Pay</a>
-          <button type="button" class="btn btn-contour" id="achat-wero-btn" aria-expanded="false" aria-controls="achat-wero">Wero ou Lydia</button>
-        </div>
-        <p class="achat-note" id="achat-note-carte">Paiement sécurisé par Stripe (Visa, Mastercard, Apple Pay). Vous y indiquez votre adresse de livraison.</p>
-        <div class="achat-wero" id="achat-wero" hidden>
-          <ol class="achat-etapes">
-            <li><strong>Votre adresse.</strong> Remplissez le bon de commande, la pièce y est déjà indiquée.<br><a class="btn btn-encre" id="bon-commande" href="#" target="_blank" rel="noopener">Bon de commande ↗</a></li>
-            <li><strong>Le paiement.</strong> <span id="wero-texte"></span><button type="button" class="btn-lien" id="copier-numero">Copier le numéro</button></li>
-            <li><strong>L'envoi.</strong> Charlotte vous confirme la commande et poste votre colis en Colissimo, avec son numéro de suivi.</li>
-          </ol>
+        <p class="achat-unique">Pièce unique : Charlotte vous la remet en main propre, ou l'emballe avec soin pour vous l'envoyer.</p>
+        <form class="p-form achat-form" id="c-form" novalidate>
+          <div class="p-form-ligne">
+            <label class="champ"><span>Votre nom</span><input name="nom" autocomplete="name" required></label>
+            <label class="champ"><span>Téléphone</span><input name="tel" type="tel" autocomplete="tel"></label>
+          </div>
+          <label class="champ"><span>E-mail <i>(si vous préférez)</i></span><input name="mail" type="email" autocomplete="email"></label>
+          <fieldset class="p-form-moyens"><legend class="visually-hidden">Comment la recevoir</legend>
+            <label><input type="radio" name="remise" value="main" checked> En main propre</label>
+            <label><input type="radio" name="remise" value="envoi"> Par la poste</label>
+          </fieldset>
+          <div class="achat-adresse" id="c-adresse" hidden>
+            <label class="champ"><span>Adresse</span><input name="adresse" autocomplete="street-address" disabled></label>
+            <div class="p-form-ligne">
+              <label class="champ"><span>Code postal</span><input name="cp" inputmode="numeric" autocomplete="postal-code" disabled></label>
+              <label class="champ"><span>Ville</span><input name="ville" autocomplete="address-level2" disabled></label>
+            </div>
+          </div>
+          <fieldset class="p-form-moyens"><legend class="visually-hidden">Règlement</legend>
+            <label><input type="radio" name="moyen" value="Lydia" checked> Lydia</label>
+            <label><input type="radio" name="moyen" value="Wero"> Wero</label>
+            <label><input type="radio" name="moyen" value="Virement"> Virement</label>
+          </fieldset>
+          <label class="champ"><span>Un mot pour Charlotte <i>(facultatif)</i></span><textarea name="mot" rows="2"></textarea></label>
+          <button type="submit" class="btn btn-encre">Commander</button>
+          <p class="p-form-ok" role="status" aria-live="polite"></p>
+        </form>
+        <div class="achat-paiement" id="c-paiement" hidden>
+          <p class="p-form-titre">C'est noté ! Charlotte vous confirme la commande très vite ♥</p>
+          <p id="c-paiement-texte"></p>
+          <p class="achat-note">Lydia : dans l'appli Lydia. Wero : dans l'appli de votre banque, rubrique Wero. Virement : IBAN <span id="c-iban"></span>, au nom de Baptiste Mazas.</p>
+          <p class="achat-copies"><button type="button" class="btn-lien" id="c-copier-tel">Copier le numéro</button> <button type="button" class="btn-lien" id="c-copier-iban">Copier l'IBAN</button></p>
         </div>
       </div>
       <a class="lien-ig" id="fiche-ig" href="#" target="_blank" rel="noopener">Voir la publication sur Instagram ↗</a>
@@ -1128,9 +1154,12 @@ const EPICERIE = [
 
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const euros = p => (Number.isInteger(p) ? String(p) : p.toFixed(2).replace('.', ',')) + ' €';
-const statut = o => o.vendu ? {cls:'vendu', txt:'Déjà vendu'} : (typeof o.prix === 'number' ? {cls:'prix', txt:euros(o.prix)} : {cls:'expo', txt:'Exposée'});
+const statut = o => o.vendu ? {cls:'vendu', txt:'Déjà vendu'} : (typeof o.prix === 'number' ? {cls:'prix', txt:'À vendre'} : {cls:'expo', txt:'Exposée'});
 const statutEpicerie = o => o.vendu ? {cls:'vendu', txt:'Épuisé'} : (typeof o.prix === 'number' ? {cls:'prix', txt:euros(o.prix)} : {cls:'maison', txt:'Fait maison'});
 
+const legende = document.querySelector('.legende');
+if (legende && OEUVRES.some(o => !o.vendu && typeof o.prix === 'number')) legende.insertAdjacentHTML('afterbegin', '<li><span class="badge badge-prix">À vendre</span>à commander ici, sur le site</li>');
+if (legende && OEUVRES.some(o => o.vendu)) legende.insertAdjacentHTML('beforeend', '<li><span class="badge badge-vendu">Déjà vendu</span>elle a trouvé sa maison</li>');
 const galerie = document.getElementById('galerie');
 galerie.innerHTML = OEUVRES.map(o => {
   const s = statut(o);
@@ -1312,59 +1341,26 @@ const fImg = document.getElementById('fiche-img');
 const vignettes = document.getElementById('vignettes');
 let retour = null;
 function montrer(src, alt) { fImg.src = 'img/' + src + '.jpg'; fImg.alt = alt; }
-const FORM = 'https://docs.google.com/forms/d/e/1FAIpQLScK3ITmvyxS0fsBj_jXqpA6RmkIeeqe_9uYdmw3a8bJHC3tTg/viewform';
-const ENTREE = {piece:'entry.1353609348', prix:'entry.205903088'};
 const achat = document.getElementById('achat');
-const carte = document.getElementById('achat-carte');
-const noteCarte = document.getElementById('achat-note-carte');
-const weroBtn = document.getElementById('achat-wero-btn');
-const weroBloc = document.getElementById('achat-wero');
-const bon = document.getElementById('bon-commande');
-const weroTexte = document.getElementById('wero-texte');
-const copierNumero = document.getElementById('copier-numero');
-let enCours = null;
 const statutDe = o => o.genre === 'epicerie' ? statutEpicerie(o) : statut(o);
 const lienStripe = u => typeof u === 'string' && /^https:\/\/(buy|checkout)\.stripe\.com\//.test(u);
 const carteActive = Object.values(FICHES).some(o => lienStripe(o.stripe));
 document.querySelectorAll('[data-carte]').forEach(el => { el.hidden = !carteActive; });
 document.querySelectorAll('[data-sans-carte]').forEach(el => { el.hidden = carteActive; });
 const aPort = o => typeof o.port === 'number';
-const montant = o => aPort(o) ? euros(o.prix + o.port) + ' (' + euros(o.prix) + ' + ' + euros(o.port) + ' d’envoi)' : euros(o.prix);
 
 function prepareAchat(o, s) {
-  enCours = o;
+  window.__commande = o;
   achat.hidden = s.cls !== 'prix';
   if (achat.hidden) return;
-  document.getElementById('achat-titre').textContent = 'Acheter · ' + (aPort(o) ? euros(o.prix + o.port) + ' avec l’envoi' : s.txt);
-  const aCarte = lienStripe(o.stripe);
-  carte.hidden = !aCarte;
-  noteCarte.hidden = !aCarte;
-  if (aCarte) carte.href = o.stripe;
-  weroBloc.hidden = aCarte;
-  weroBtn.setAttribute('aria-expanded', String(!aCarte));
-  bon.href = FORM + '?usp=pp_url&' + ENTREE.piece + '=' + encodeURIComponent(o.titre) + '&' + ENTREE.prix + '=' + encodeURIComponent(montant(o));
-  weroTexte.textContent = (aPort(o)
-    ? 'Envoyez ' + euros(o.prix + o.port) + ' (envoi compris)'
-    : 'Charlotte vous confirme le total avec l’envoi, puis vous l’envoyez')
-    + ' par Wero (dans l’appli de votre banque) ou par Lydia au ' + TEL_TXT + ', avec la mention « ' + o.titre + ' ».';
-  copierNumero.textContent = 'Copier le numéro';
+  document.getElementById('achat-titre').textContent = 'La commander · ' + euros(o.prix);
+  const f = document.getElementById('c-form');
+  f.reset();
+  f.hidden = false;
+  f.querySelector('.p-form-ok').textContent = '';
+  if (window.__remise) window.__remise();
+  document.getElementById('c-paiement').hidden = true;
 }
-weroBtn.addEventListener('click', () => {
-  const ouvrir = weroBloc.hidden;
-  weroBloc.hidden = !ouvrir;
-  weroBtn.setAttribute('aria-expanded', String(ouvrir));
-  noteCarte.hidden = ouvrir || !lienStripe(enCours && enCours.stripe);
-  if (ouvrir) bon.focus({preventScroll:true});
-});
-copierNumero.addEventListener('click', async () => {
-  try {
-    await navigator.clipboard.writeText(TEL_TXT.replace(/\s/g, ''));
-    copierNumero.textContent = 'Numéro copié';
-  } catch (err) {
-    copierNumero.textContent = TEL_TXT;
-  }
-});
-
 
 function ouvrirFiche(o) {
   const s = statutDe(o);
@@ -1372,7 +1368,7 @@ function ouvrirFiche(o) {
   document.getElementById('fiche-disc').textContent = o.rubrique;
   document.getElementById('fiche-titre').textContent = o.titre;
   document.getElementById('fiche-tech').textContent = o.tech;
-  const etat = {prix:'Disponible', vendu:o.genre === 'epicerie' ? 'Épuisé pour le moment' : 'Elle a trouvé sa maison', expo:'Pièce exposée, pas à vendre', maison:'Fait maison par Charlotte'}[s.cls];
+  const etat = {prix:'Elle cherche encore sa maison', vendu:o.genre === 'epicerie' ? 'Épuisé pour le moment' : 'Elle a trouvé sa maison', expo:'Pièce exposée, pas à vendre', maison:'Fait maison par Charlotte'}[s.cls];
   document.getElementById('fiche-statut').innerHTML = '<span class="badge badge-' + s.cls + '">' + s.txt + '</span>' + etat;
   const msg = document.getElementById('fiche-message');
   const actions = document.getElementById('fiche-actions');
@@ -1383,7 +1379,7 @@ function ouvrirFiche(o) {
     msg.textContent = 'Elle vous plaît ? Envoyez un cœur à Charlotte.';
     actions.innerHTML = '<button type="button" class="btn btn-encre' + (AIMES[o.id] ? ' aime' : '') + '" data-coeur="' + o.id + '" data-titre="' + esc(o.titre) + '" aria-pressed="' + (AIMES[o.id] ? 'true' : 'false') + '">' + (AIMES[o.id] ? '\u2665 C\u0153ur envoy\u00e9 \u00e0 Charlotte' : '\u2665 Envoyer un c\u0153ur') + '</button>';
   } else {
-    msg.textContent = '';
+    msg.textContent = 'Elle est encore à vendre : offrez-la, ou offrez-vous-la, en la commandant ici.';
     actions.innerHTML = '';
   }
   prepareAchat(o, s);
@@ -1607,7 +1603,7 @@ function ouvrir(i) {
   dlg.querySelector('.participer-in').scrollTop = 0;
 }
 dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
-function brancherFormulaire(form, preparer, merciTexte) {
+function brancherFormulaire(form, preparer, merciTexte, apres) {
   const ok = form.querySelector('.p-form-ok'), bouton = form.querySelector('button[type=submit]');
   form.addEventListener('submit', e => {
     e.preventDefault();
@@ -1620,6 +1616,7 @@ function brancherFormulaire(form, preparer, merciTexte) {
       bouton.disabled = false;
       if (!reussi) { ok.classList.add('erreur'); ok.textContent = 'L’envoi n’a pas marché (connexion ?). Réessayez dans un instant.'; return; }
       ok.textContent = merciTexte; form.querySelectorAll('input:not([type=radio]),textarea').forEach(x => { x.value = ''; });
+      if (apres) apres(champs);
     });
   });
 }
@@ -1636,6 +1633,45 @@ brancherFormulaire(document.getElementById('a-form'), ch => {
   return ((ch.tel || '').trim() || (ch.mail || '').trim()) ? '' : 'Laissez un téléphone ou un e-mail pour que Charlotte puisse vous recontacter.';
 }, 'C\u2019est noté ! Charlotte vous recontacte dès que le livre est prêt \u2665');
 document.querySelectorAll('[data-participer]').forEach(b => b.addEventListener('click', () => ouvrir(null)));
+const cForm = document.getElementById('c-form');
+const cAdresse = document.getElementById('c-adresse');
+function remise() {
+  const envoi = (cForm.querySelector('input[name=remise]:checked') || {}).value === 'envoi';
+  cAdresse.hidden = !envoi;
+  cAdresse.querySelectorAll('input').forEach(i => { i.disabled = !envoi; i.required = envoi; });
+}
+window.__remise = remise;
+cForm.querySelectorAll('input[name=remise]').forEach(r => r.addEventListener('change', remise));
+remise();
+document.getElementById('c-iban').textContent = RIB.iban;
+brancherFormulaire(cForm, ch => {
+  const o = window.__commande;
+  if (!o) return 'Rouvrez la pièce, puis réessayez.';
+  if (!((ch.tel || '').trim() || (ch.mail || '').trim())) return 'Laissez un téléphone ou un e-mail pour que Charlotte puisse vous confirmer la commande.';
+  const envoi = ch.remise === 'envoi';
+  ch.pour = 'Commande \u2013 ' + o.titre;
+  ch.montant = String(o.prix + (envoi && typeof o.port === 'number' ? o.port : 0));
+  if (!envoi) ch.adresse = 'En main propre';
+  delete ch.remise;
+  return '';
+}, 'C\u2019est noté !', ch => {
+  const o = window.__commande;
+  const envoi = (ch.adresse || '') !== 'En main propre';
+  const total = o.prix + (envoi && typeof o.port === 'number' ? o.port : 0);
+  const reste = envoi && typeof o.port !== 'number' ? ', plus l\u2019envoi qu\u2019elle vous indique,' : '';
+  document.getElementById('c-paiement-texte').innerHTML = 'Dès qu\u2019elle vous l\u2019a confirmée, envoyez <strong>' + eur(total) + '</strong>' + reste + ' par Lydia ou Wero au <strong>06 87 66 48 16</strong> (Baptiste), ou par virement, avec la mention « ' + o.titre.replace(/[<>&]/g, '') + ' ».';
+  cForm.hidden = true;
+  const p = document.getElementById('c-paiement');
+  p.hidden = false;
+  p.scrollIntoView({block:'nearest'});
+});
+async function copierBouton(texte, bouton, fait) {
+  const avant = bouton.textContent;
+  try { await navigator.clipboard.writeText(texte); bouton.textContent = fait; } catch (e) { bouton.textContent = texte; }
+  setTimeout(() => { bouton.textContent = avant; }, 2500);
+}
+document.getElementById('c-copier-tel').addEventListener('click', e => copierBouton('0687664816', e.currentTarget, 'Numéro copié'));
+document.getElementById('c-copier-iban').addEventListener('click', e => copierBouton(RIB.iban.replace(/\s/g, ''), e.currentTarget, 'IBAN copié'));
 
 async function copier(texte, noeud, msg) {
   try {
