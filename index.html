@@ -855,7 +855,7 @@ dialog.fiche{overscroll-behavior:contain}
             <p>De la terre au tour, des pinceaux aux ciseaux : de quoi créer de A à Z. Si le cœur vous en dit, vous pouvez participer à ce projet.</p>
           </div>
           <div class="reunis">
-            <p class="reunis-txt"><strong id="reunis-montant">500 €</strong> déjà réunis pour l’atelier, merci ♥</p>
+            <p class="reunis-txt"><strong id="reunis-montant">570 €</strong> déjà réunis pour l’atelier, merci ♥</p>
           </div>
         </div>
         <div class="filtres filtres-cadeaux" id="filtres-cadeaux" role="group" aria-label="Catégories de la liste"></div>
@@ -1478,7 +1478,7 @@ fiche.addEventListener('close', () => { if (retour) retour.focus(); });
 const CADEAUX = [
   {cat:'Céramique', c:'var(--terre)', items:[
     {nom:'Tour de potier Shimpo Whisper-T', img:'tour-shimpo', url:'https://www.cigaleetfourmi.fr/tours/180-tour-shimpo-whisper-t.html', prix:1495, usage:"Le tour japonais que recommandent les potiers : très silencieux, assez puissant et réglable en hauteur, pour travailler confortablement pendant des années."},
-    {nom:'Tournette en fonte, Ø 22 cm', img:'tournette', url:'https://ceradel.fr/products/tournette-haute-o220mm-e-13d', prix:69.86, usage:"Un plateau tournant lourd et stable, pour monter, décorer et émailler ses pièces à la main."},
+    {nom:'Tournette en fonte, Ø 22 cm', img:'tournette', url:'https://ceradel.fr/products/tournette-haute-o220mm-e-13d', prix:69.86, offert:true, usage:"Un plateau tournant lourd et stable, pour monter, décorer et émailler ses pièces à la main."},
     {nom:'Grès caramel, 12 kg', img:'gres-caramel', url:'https://ceradel.fr/products/toffee-gres-caramel-cham-0-0-2mm', prix:21.79, usage:"Une terre qui cuit du beige avoine au brun caramel."},
     {nom:'Grès noir, 12 kg', img:'gres-noir', url:'https://ceradel.fr/products/prni-gres-noir-cham-0-0-2', prix:21.79, usage:"Une terre d'un noir intense après cuisson."},
     {nom:'Porcelaine papier, 5 kg', img:'porcelaine', url:'https://ceradel.fr/products/cellulain-porcelaine-papier-paper-clay-5kg', prix:19.32, usage:"Une porcelaine fine et souple, faite pour le modelage."},
@@ -1553,7 +1553,7 @@ const CADEAUX = [
   ]}
 ];
 
-const REUNIS = 500;
+const REUNIS = 570;
 const RIB = {titulaire:'Baptiste MAZAS', iban:'FR76 3000 4008 0400 0032 4897 836', bic:'BNPAFRPPXXX'};
 
 const eur = n => n.toLocaleString('fr-FR', {minimumFractionDigits: Number.isInteger(n) ? 0 : 2, maximumFractionDigits: 2}) + ' €';
