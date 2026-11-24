@@ -377,6 +377,8 @@ a.cadeau-nom:hover{color:var(--cobalt);text-decoration:underline;text-decoration
 .reunis{flex:0 1 280px;min-width:220px}
 .reunis-txt{margin:0 0 8px;font-size:.95rem;color:#3b332b}
 .reunis-txt span{white-space:nowrap}
+.reunis-equiv{margin:0;font-size:.86rem;line-height:1.45;color:#4a4036}
+.reunis-equiv:empty{display:none}
 .reunis-txt strong{font-family:var(--f-serif);font-weight:400;font-size:1.75rem;line-height:1;color:var(--encre);margin-right:5px}
 @media (max-width:540px){
   .cadeau{grid-template-columns:56px minmax(0,1fr);gap:10px 14px;align-items:start}
@@ -856,6 +858,7 @@ dialog.fiche{overscroll-behavior:contain}
           </div>
           <div class="reunis">
             <p class="reunis-txt"><strong id="reunis-montant">760 €</strong> déjà réunis pour l’atelier, merci ♥</p>
+            <p class="reunis-equiv" id="reunis-equiv"></p>
           </div>
         </div>
         <div class="filtres filtres-cadeaux" id="filtres-cadeaux" role="group" aria-label="Catégories de la liste"></div>
@@ -1478,7 +1481,7 @@ fiche.addEventListener('close', () => { if (retour) retour.focus(); });
 const CADEAUX = [
   {cat:'Céramique', c:'var(--terre)', items:[
     {nom:'Tour de potier Shimpo Whisper-T', img:'tour-shimpo', url:'https://www.cigaleetfourmi.fr/tours/180-tour-shimpo-whisper-t.html', prix:1495, usage:"Le tour japonais que recommandent les potiers : très silencieux, assez puissant et réglable en hauteur, pour travailler confortablement pendant des années."},
-    {nom:'Tournette en fonte, Ø 22 cm', img:'tournette', url:'https://ceradel.fr/products/tournette-haute-o220mm-e-13d', prix:69.86, offert:true, usage:"Un plateau tournant lourd et stable, pour monter, décorer et émailler ses pièces à la main."},
+    {nom:'Tournette en fonte, Ø 22 cm', court:"la tournette", img:'tournette', url:'https://ceradel.fr/products/tournette-haute-o220mm-e-13d', prix:69.86, offert:true, usage:"Un plateau tournant lourd et stable, pour monter, décorer et émailler ses pièces à la main."},
     {nom:'Grès caramel, 12 kg', img:'gres-caramel', url:'https://ceradel.fr/products/toffee-gres-caramel-cham-0-0-2mm', prix:21.79, usage:"Une terre qui cuit du beige avoine au brun caramel."},
     {nom:'Grès noir, 12 kg', img:'gres-noir', url:'https://ceradel.fr/products/prni-gres-noir-cham-0-0-2', prix:21.79, usage:"Une terre d'un noir intense après cuisson."},
     {nom:'Porcelaine papier, 5 kg', img:'porcelaine', url:'https://ceradel.fr/products/cellulain-porcelaine-papier-paper-clay-5kg', prix:19.32, usage:"Une porcelaine fine et souple, faite pour le modelage."},
@@ -1535,6 +1538,16 @@ const CADEAUX = [
       {t:'Chef', img:'couteau-chef', url:'https://www.opinel.com/fr-fr/couteaux-cuisine/collection-les-forges-1890/couteau-chef-les-forges-1890'},
       {t:'Office', img:'couteau-office', url:'https://www.opinel.com/fr-fr/couteaux-cuisine/collection-les-forges-1890/couteau-office-les-forges-1890'}]},
     {nom:'Barre aimantée en noyer, 40 cm', img:'barre-noyer', url:'https://www.amazon.fr/dp/B0B145CMXS', prix:25.64, usage:"Une fine barre de noyer massif, aux aimants cachés dans le bois : discrète au mur, on n'y voit pas de métal."},
+    {nom:'2 poêles en inox De Buyer, Ø\u00a028\u00a0cm, avec couvercles', prix:527, usage:"Deux grandes poêles Affinity en inox poli miroir, 5 couches, fabriquées en France, chacune avec son couvercle : pour saisir, dorer et mijoter, et pour durer.", variantes:[
+      {t:'Poêle', img:'poele-affinity', url:'https://www.debuyer.com/fr/poele-ronde-affinity-o-28cm-4347.html'},
+      {t:'Couvercle', img:'couvercle-affinity', url:'https://www.debuyer.com/fr/couvercle-inox-pontet-fonte-d-inox-783.html'}]},
+    {nom:'Épices Roellinger, 6 pots', prix:58.3, usage:"Les mélanges du chef Olivier Roellinger : Retour des Indes pour le poisson, Grande Caravane pour la viande, Alizés pour les salades, Poudre du Vent pour les pâtes, Équinoxiale pour les desserts, et l'infusion Rêves d'étoiles.", variantes:[
+      {t:'Poisson', img:'epice-retour-indes', url:'https://www.epices-roellinger.com/fr/products/poudre-retour-des-indes-c'},
+      {t:'Viande', img:'epice-grande-caravane', url:'https://www.epices-roellinger.com/fr/products/poudre-grande-caravane-c'},
+      {t:'Salades', img:'epice-alizes', url:'https://www.epices-roellinger.com/fr/products/poudre-des-alizes-c'},
+      {t:'Pâtes', img:'epice-vent', url:'https://www.epices-roellinger.com/fr/products/poudre-du-vent'},
+      {t:'Desserts', img:'epice-equinoxiale', url:'https://www.epices-roellinger.com/fr/products/poudre-equinoxiale'},
+      {t:'Infusion', img:'infusion-reves-etoiles', url:'https://www.epices-roellinger.com/fr/products/reves-d-etoiles-c'}]},
     {nom:'Pince de dressage de chef', img:'pince', url:'https://www.amazon.fr/dp/B01HMCLOGC', prix:21.32, usage:"Une longue pince fine De Buyer, comme celle des cuisiniers pros, pour dresser ses assiettes au millimètre."},
     {nom:'100 sachets kraft à fenêtre', img:'sachets', url:'https://www.amazon.fr/dp/B0FHHWVSRW', prix:11.99, usage:"Pour emballer ses douceurs maison."}
   ]},
@@ -1543,13 +1556,13 @@ const CADEAUX = [
     {nom:'Réflecteur photo', img:'reflecteur', url:'https://www.amazon.fr/dp/B0CJ8PNJLJ', prix:25.95, usage:"Pour adoucir les ombres sur ses photos."}
   ]},
   {cat:'Aménagement', c:'var(--cobalt)', note:"Ce qui est marqué « Offert » est déjà pris en charge.", items:[
-    {nom:'3 étagères en acier galvanisé, 1 m', img:'etageres-1m', url:'https://www.castorama.fr/etagere-de-garage-en-acier-galvanise-h-180-x-l-100-x-p-50-cm-schulte-regalwelt-powermax/4004514122698_CAFR.prd', prix:239.7, offert:true, usage:"Deux au fond de la cave, une à l'entrée : pour les terres, les pièces qui sèchent, les pots, et les valises et cartons qui ne traîneront plus par terre."},
-    {nom:"2 spots d'atelier et leurs ampoules", img:'spots', url:'https://www.ikea.com/fr/fr/p/hektar-applique-spot-a-pince-gris-fonce-80215308/', prix:54.97, offert:true, usage:"Des spots industriels en métal, en lumière chaude : l'un au-dessus du tour, l'autre sur la grande table."},
-    {nom:'Panneau à outils en bois', img:'panneau', url:'https://www.ikea.com/fr/fr/p/skadis-panneau-perfore-combinaison-bois-s09217062/', prix:34, offert:true, usage:"Au-dessus du tour, pour avoir tous ses outils de poterie sous la main."},
-    {nom:'2 tréteaux en bouleau', img:'treteaux', url:'https://www.ikea.com/fr/fr/p/mittback-treteau-bouleau-30459997/', prix:60, offert:true, usage:"Sous le grand plateau en bois : sa table pour peindre, coudre et modeler."},
+    {nom:'3 étagères en acier galvanisé, 1 m', court:"les étagères", img:'etageres-1m', url:'https://www.castorama.fr/etagere-de-garage-en-acier-galvanise-h-180-x-l-100-x-p-50-cm-schulte-regalwelt-powermax/4004514122698_CAFR.prd', prix:239.7, offert:true, usage:"Deux au fond de la cave, une à l'entrée : pour les terres, les pièces qui sèchent, les pots, et les valises et cartons qui ne traîneront plus par terre."},
+    {nom:"2 spots d'atelier et leurs ampoules", court:"les spots", img:'spots', url:'https://www.ikea.com/fr/fr/p/hektar-applique-spot-a-pince-gris-fonce-80215308/', prix:54.97, offert:true, usage:"Des spots industriels en métal, en lumière chaude : l'un au-dessus du tour, l'autre sur la grande table."},
+    {nom:'Panneau à outils en bois', court:"le panneau à outils", img:'panneau', url:'https://www.ikea.com/fr/fr/p/skadis-panneau-perfore-combinaison-bois-s09217062/', prix:34, offert:true, usage:"Au-dessus du tour, pour avoir tous ses outils de poterie sous la main."},
+    {nom:'2 tréteaux en bouleau', court:"les tréteaux", img:'treteaux', url:'https://www.ikea.com/fr/fr/p/mittback-treteau-bouleau-30459997/', prix:60, offert:true, usage:"Sous le grand plateau en bois : sa table pour peindre, coudre et modeler."},
     {nom:'2 malles en aluminium, 93 L', img:'malle-alu', url:'https://www.amazon.fr/dp/B07LCH85V4', prix:322.58, usage:"Étanches à l'humidité de la cave : pour ranger tissus, papiers et toiles bien à l'abri."},
-    {nom:'Déshumidificateur', img:'deshumidificateur', url:'https://www.amazon.fr/dp/B07BQTMKXG', prix:111.99, offert:true, usage:"Pour une cave saine, où la terre, les toiles et le tissu ne prennent pas l'humidité."},
-    {nom:'Hygromètre', img:'hygrometre', url:'https://www.amazon.fr/dp/B01H1R0K68', prix:11.99, offert:true, usage:"Pour surveiller l'humidité de l'atelier."}
+    {nom:'Déshumidificateur', court:"le déshumidificateur", img:'deshumidificateur', url:'https://www.amazon.fr/dp/B07BQTMKXG', prix:111.99, offert:true, usage:"Pour une cave saine, où la terre, les toiles et le tissu ne prennent pas l'humidité."},
+    {nom:'Hygromètre', court:"l'hygromètre", img:'hygrometre', url:'https://www.amazon.fr/dp/B01H1R0K68', prix:11.99, offert:true, usage:"Pour surveiller l'humidité de l'atelier."}
   ]}
 ];
 
@@ -1618,6 +1631,14 @@ CADEAUX.forEach(g => {
 });
 
 document.getElementById('reunis-montant').textContent = eur(REUNIS);
+(() => {
+  const offerts = CADEAUX.flatMap(c => c.items).filter(i => i.offert).sort((a, b) => b.prix - a.prix);
+  if (!offerts.length) return;
+  const noms = offerts.map(i => i.court || i.nom);
+  const liste = noms.length > 1 ? noms.slice(0, -1).join(', ') + ' et ' + noms[noms.length - 1] : noms[0];
+  const reste = Math.floor(REUNIS - offerts.reduce((t, i) => t + i.prix, 0));
+  document.getElementById('reunis-equiv').textContent = 'Soit déjà ' + liste + (reste >= 1 ? ', plus ' + eur(reste) + ' pour la suite.' : '.');
+})();
 
 const filtresCadeaux = document.getElementById('filtres-cadeaux');
 CADEAUX.forEach((g, n) => {
