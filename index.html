@@ -372,6 +372,9 @@ a.cadeau-nom:hover{color:var(--cobalt);text-decoration:underline;text-decoration
 .cadeau-participer:focus-visible{outline:3px solid var(--cobalt);outline-offset:2px}
 .cadeau.offert .cadeau-vignette,.cadeau.offert .cadeau-nom,.cadeau.offert .cadeau-usage{opacity:.75}
 .badge-offert{background:var(--olive);color:#fff}
+.cadeau-jauge{display:block;max-width:260px;height:6px;margin-top:10px;border-radius:999px;background:var(--lin-2);overflow:hidden}
+.cadeau-jauge span{display:block;height:100%;border-radius:inherit;background:var(--olive)}
+.cadeau-reuni{display:block;margin-top:6px;font-size:.84rem;color:var(--encre)}
 .cadeaux-cat-note{margin:0 0 12px;font-size:.92rem;color:#4a4036}
 .cadeaux-note{margin:18px 0 0;font-size:.86rem;color:var(--gris)}
 .reunis{flex:0 1 280px;min-width:220px}
@@ -857,7 +860,7 @@ dialog.fiche{overscroll-behavior:contain}
             <p>De la terre au tour, des pinceaux aux ciseaux : de quoi créer de A à Z. Si le cœur vous en dit, vous pouvez participer à ce projet.</p>
           </div>
           <div class="reunis">
-            <p class="reunis-txt"><strong id="reunis-montant">810 €</strong> déjà réunis pour l’atelier, merci ♥</p>
+            <p class="reunis-txt"><strong id="reunis-montant">1 810 €</strong> déjà réunis pour l’atelier, merci ♥</p>
             <p class="reunis-equiv" id="reunis-equiv"></p>
           </div>
         </div>
@@ -1482,66 +1485,66 @@ const CADEAUX = [
   {cat:'Céramique', c:'var(--terre)', items:[
     {nom:'Tour de potier Shimpo Whisper-T', img:'tour-shimpo', url:'https://www.cigaleetfourmi.fr/tours/180-tour-shimpo-whisper-t.html', prix:1495, usage:"Le tour japonais que recommandent les potiers : très silencieux, assez puissant et réglable en hauteur, pour travailler confortablement pendant des années."},
     {nom:'Tournette en fonte, Ø 22 cm', court:"la tournette", img:'tournette', url:'https://ceradel.fr/products/tournette-haute-o220mm-e-13d', prix:69.86, offert:true, usage:"Un plateau tournant lourd et stable, pour monter, décorer et émailler ses pièces à la main."},
-    {nom:'Grès caramel, 12 kg', img:'gres-caramel', url:'https://ceradel.fr/products/toffee-gres-caramel-cham-0-0-2mm', prix:21.79, usage:"Une terre qui cuit du beige avoine au brun caramel."},
-    {nom:'Grès noir, 12 kg', img:'gres-noir', url:'https://ceradel.fr/products/prni-gres-noir-cham-0-0-2', prix:21.79, usage:"Une terre d'un noir intense après cuisson."},
-    {nom:'Porcelaine papier, 5 kg', img:'porcelaine', url:'https://ceradel.fr/products/cellulain-porcelaine-papier-paper-clay-5kg', prix:19.32, usage:"Une porcelaine fine et souple, faite pour le modelage."},
-    {nom:'6 engobes de couleur', prix:58.19, usage:"Pour peindre ses dessins sur ses céramiques, dans les couleurs de Melle Citron.", variantes:[
+    {nom:'Grès caramel, 12 kg', court:"le grès caramel", img:'gres-caramel', url:'https://ceradel.fr/products/toffee-gres-caramel-cham-0-0-2mm', prix:21.79, offert:true, usage:"Une terre qui cuit du beige avoine au brun caramel."},
+    {nom:'Grès noir, 12 kg', court:"le grès noir", img:'gres-noir', url:'https://ceradel.fr/products/prni-gres-noir-cham-0-0-2', prix:21.79, offert:true, usage:"Une terre d'un noir intense après cuisson."},
+    {nom:'Porcelaine papier, 5 kg', court:"la porcelaine papier", img:'porcelaine', url:'https://ceradel.fr/products/cellulain-porcelaine-papier-paper-clay-5kg', prix:19.32, offert:true, usage:"Une porcelaine fine et souple, faite pour le modelage."},
+    {nom:'6 engobes de couleur', court:"les engobes", prix:58.19, offert:true, usage:"Pour peindre ses dessins sur ses céramiques, dans les couleurs de Melle Citron.", variantes:[
       {t:'Jaune', img:'engobe-jaune', url:'https://ceradel.fr/products/engobe-amaco-v-391-intense-yellow'},
       {t:'Bleu', img:'engobe-bleu', url:'https://ceradel.fr/products/engobe-amaco-v-386-electric-blue'},
       {t:'Turquoise', img:'engobe-turquoise', url:'https://ceradel.fr/products/engobe-amaco-v-341-blue-green'},
       {t:'Terracotta', img:'engobe-terracotta', url:'https://ceradel.fr/products/engobe-amaco-v-303-terra-cotta'},
       {t:'Corail', img:'engobe-corail', url:'https://ceradel.fr/products/engobe-amaco-v-323-salmon'},
       {t:'Noir', img:'engobe-noir', url:'https://ceradel.fr/products/engobe-amaco-v-361-jet-black'}]},
-    {nom:'4 estèques', img:'esteques', url:'https://ceradel.fr/products/kit-de-4-esteques-fermes-xiem-3', prix:19.2, usage:"Pour façonner et lisser les formes."},
-    {nom:'3 mirettes tranchantes Xiem', prix:41.4, usage:"En acier traité et bien affûtées : pour tournasser, creuser et sculpter avec précision.", variantes:[
-      {t:'Goutte', img:'mirette-goutte', url:'https://ceradel.fr/products/mirette-tranchante-medium-goutte-xiem'},
-      {t:'Triangle', img:'mirette-triangle', url:'https://ceradel.fr/products/mirette-tranchante-medium-triangulaire-xiem'},
-      {t:'Petit rond', img:'mirette-rond', url:'https://ceradel.fr/products/mirette-tranchante-petit-rond-xiem'}]},
-    {nom:'9 ébauchoirs en buis', img:'ebauchoirs', url:'https://www.rougier-ple.fr/48152-879991-set-de-9-ebauchoirs.html', prix:9.6, usage:"Pour lisser les jointures et sculpter les détails."},
-    {nom:'Rouleau en hêtre et ses baguettes', prix:21.66, usage:"Pour étaler des plaques de terre bien régulières.", variantes:[
+    {nom:'4 estèques', court:"les estèques", img:'esteques', url:'https://ceradel.fr/products/kit-de-4-esteques-fermes-xiem-3', prix:19.2, offert:true, usage:"Pour façonner et lisser les formes."},
+    {nom:'3 mirettes DiamondCore à manche en bois', court:"les mirettes", prix:179.97, offert:true, usage:"Un beau manche en bois dur et une lame en inox qui reste tranchante sans affûtage, avec une lame de rechange pour chacune : pour tournasser, creuser et sculpter.", variantes:[
+      {t:'Demi-dôme', img:'mirette-dct1', url:'https://ceradel.fr/products/dct1-mirette-pour-tailler-sculpter-former'},
+      {t:'En U', img:'mirette-dct4', url:'https://ceradel.fr/products/dct4-mirette-pour-tailler-sculpter-former'},
+      {t:'Lame droite', img:'mirette-dct8', url:'https://ceradel.fr/products/dct8-mirette-pour-tailler-sculpter-former'}]},
+    {nom:'9 ébauchoirs en buis', court:"les ébauchoirs", img:'ebauchoirs', url:'https://www.rougier-ple.fr/48152-879991-set-de-9-ebauchoirs.html', prix:9.6, offert:true, usage:"Pour lisser les jointures et sculpter les détails."},
+    {nom:'Rouleau en hêtre et ses baguettes', court:"le rouleau", prix:21.66, offert:true, usage:"Pour étaler des plaques de terre bien régulières.", variantes:[
       {t:'Rouleau', img:'rouleau', url:'https://ceradel.fr/products/rouleau-h_4565'},
       {t:'Baguettes', img:'rouleau', url:'https://ceradel.fr/products/baguettes-pour-rouleau-h-4565-lot-de-2'}]},
-    {nom:'2 pinceaux japonais', prix:15.48, usage:"Un fin et un plus large, pour peindre ses engobes et ses motifs.", variantes:[
+    {nom:'2 pinceaux japonais', court:"les pinceaux japonais", prix:15.48, offert:true, usage:"Un fin et un plus large, pour peindre ses engobes et ses motifs.", variantes:[
       {t:'Fin', img:'pinceaux-japonais', url:'https://ceradel.fr/products/pinceau-r2434-japonais'},
       {t:'Large', img:'pinceaux-japonais', url:'https://ceradel.fr/products/pinceau-r2437-japonais'}]},
-    {nom:'3 outils à tournasser', img:'tournasser', url:'https://ceradel.fr/products/lot-de-3-outils-a-tournaser-doubles-xiem', prix:47.99, usage:"Pour creuser et finir le pied de ses bols et de ses tasses."},
-    {nom:'Fil à couper à poignées en bois', img:'fil-p44', url:'https://ceradel.fr/products/fil-a-couper-p44', prix:2.2, usage:"Pour couper la terre et décoller les pièces du tour."},
-    {nom:'Éponge à porcelaine', img:'eponge', url:'https://ceradel.fr/products/eponge-pour-porcelaine-xiem', prix:14.5, usage:"Pour les finitions sur la porcelaine."},
+    {nom:'3 outils à tournasser', court:"les outils à tournasser", img:'tournasser', url:'https://ceradel.fr/products/lot-de-3-outils-a-tournaser-doubles-xiem', prix:47.99, offert:true, usage:"Pour creuser et finir le pied de ses bols et de ses tasses."},
+    {nom:'Fil à couper à poignées en bois', court:"le fil à couper", img:'fil-p44', url:'https://ceradel.fr/products/fil-a-couper-p44', prix:2.2, offert:true, usage:"Pour couper la terre et décoller les pièces du tour."},
+    {nom:'Éponge à porcelaine', court:"l'éponge à porcelaine", img:'eponge', url:'https://ceradel.fr/products/eponge-pour-porcelaine-xiem', prix:14.5, offert:true, usage:"Pour les finitions sur la porcelaine."},
     {nom:'Sac à outils de poterie', court:"le sac à outils", img:'sac', url:'https://ceradel.fr/products/sac-pour-la-poterie-xiem', prix:48, offert:true, usage:"Pour ranger tous ses outils, et les emporter."},
-    {nom:"Tabouret d'atelier ancien, à vis", img:'tabouret-vis', url:'https://www.leboncoin.fr/ad/ameublement/3259270839', prix:70, usage:"Un vrai tabouret d'atelier en bois massif, patiné par les années : sa grande vis le règle de 48 à 69 cm, pour le tour comme pour la table."},
-    {nom:'Seau en zinc à l’ancienne', img:'seau-zinc', url:'https://www.amazon.fr/dp/B00VTSADCW', prix:18.9, usage:"Pour l'eau du tour : un beau seau en zinc, avec sa poignée en bois."},
-    {nom:'Pot en grès pour la terre, 10 L', img:'pot-gres', url:'https://www.amazon.fr/dp/B00445RW44', prix:69.99, usage:"En grès, avec un couvercle à rigole d'eau qui ferme à l'air : la terre y reste humide et prête à travailler."},
-    {nom:'Tablier en lin rayé rose', img:'tablier', url:'https://merci-merci.com/products/tablier-en-lin-lave-rayures-trame-rose', prix:65, usage:"Pour travailler la terre sans se salir."}
+    {nom:"Tabouret d'atelier ancien, à vis", court:"le tabouret", img:'tabouret-vis', url:'https://www.leboncoin.fr/ad/ameublement/3259270839', prix:70, offert:true, usage:"Un vrai tabouret d'atelier en bois massif, patiné par les années : sa grande vis le règle de 48 à 69 cm, pour le tour comme pour la table."},
+    {nom:'Seau en zinc à l’ancienne', court:"le seau en zinc", img:'seau-zinc', url:'https://www.amazon.fr/dp/B00VTSADCW', prix:18.9, offert:true, usage:"Pour l'eau du tour : un beau seau en zinc, avec sa poignée en bois."},
+    {nom:'Pot en grès pour la terre, 10 L', court:"le pot à terre", img:'pot-gres', url:'https://www.amazon.fr/dp/B00445RW44', prix:69.99, offert:true, usage:"En grès, avec un couvercle à rigole d'eau qui ferme à l'air : la terre y reste humide et prête à travailler."},
+    {nom:'Tablier en lin rayé rose', court:"le tablier en lin", img:'tablier', url:'https://merci-merci.com/products/tablier-en-lin-lave-rayures-trame-rose', prix:65, offert:true, usage:"Pour travailler la terre sans se salir."}
   ]},
   {cat:'Peinture', c:'var(--citron)', items:[
     {nom:'3 toiles en lin sur châssis', court:"les toiles en lin", prix:49.55, offert:true, usage:"Trois formats en vrai lin, de la petite toile à celle qu'on expose.", variantes:[
       {t:'Petite (6F)', img:'toile-6f', url:'https://www.amazon.fr/dp/B073HLSDQF'},
       {t:'Moyenne (8F)', img:'toile-8f', url:'https://www.amazon.fr/dp/B073HHXHXK'},
       {t:'Grande (12P)', img:'toile-12p', url:'https://www.amazon.fr/dp/B073HQCF9B'}]},
-    {nom:'Coffret de gouache, 12 couleurs', img:'gouache', url:'https://monoe-shop.com/products/coffret-12-couleurs-gouache-extra-fine-rebecca-green-x-holbein', prix:60.5, usage:"Les 12 teintes choisies par l'illustratrice Rebecca Green : une gouache mate et veloutée."},
+    {nom:'Coffret de gouache, 12 couleurs', court:"la gouache", img:'gouache', url:'https://monoe-shop.com/products/coffret-12-couleurs-gouache-extra-fine-rebecca-green-x-holbein', prix:60.5, offert:true, usage:"Les 12 teintes choisies par l'illustratrice Rebecca Green : une gouache mate et veloutée."},
     {nom:'5 pinceaux Raphaël', court:"les pinceaux Raphaël", img:'pinceaux', url:'https://www.amazon.fr/dp/B084CTPVBN', prix:33.88, offert:true, usage:"De beaux pinceaux français pour ses toiles."},
     {nom:'Couteaux à peindre Sennelier (× 3)', court:"les couteaux à peindre", img:'couteaux', url:'https://www.surdiscount.com/fr/couteaux/26639-couteau-a-peindre-sennelier-n1013-manche-bois-lame-acier-3046450369059.html', prix:13.5, offert:true, usage:"Pour peindre en matière, au couteau."}
   ]},
   {cat:'Couture', c:'var(--brique)', items:[
-    {nom:'Tissu Maison Fauve, 2,5 m', prix:59.75, usage:"De quoi coudre la surchemise ou le pantalon : un velours côtelé uni, ou une gabardine de coton à motif tigre.", variantes:[
+    {nom:'Tissu Maison Fauve, 2,5 m', court:"le tissu Maison Fauve", prix:59.75, offert:true, usage:"De quoi coudre la surchemise ou le pantalon : un velours côtelé uni, ou une gabardine de coton à motif tigre.", variantes:[
       {t:'Velours camel', img:'tissu-velours-camel', url:'https://www.maison-fauve.com/products/tissu-velours-cotele-camel-navy-ou-gris'},
       {t:'Velours bleu nuit', img:'tissu-velours-navy', url:'https://www.maison-fauve.com/products/tissu-velours-cotele-camel-navy-ou-gris'},
       {t:'Tigre', img:'tissu-tigre', url:'https://www.maison-fauve.com/products/tissu-gabardine-de-coton-imprimee-savage'}]},
-    {nom:'Tissu tencel, lin et coton, 2 m', img:'tissu-fauve', url:'https://www.maison-fauve.com/products/tissu-doupion-de-tencel-lin-et-coton-plusieurs-couleurs', prix:53.8, usage:"Un tissu fluide de la marque Maison Fauve, pour coudre ses vêtements, en neuf couleurs."},
-    {nom:'2 patrons Maison Fauve', prix:35.8, usage:"Deux patrons de couture de la marque française : une surchemise et un pantalon taille haute à pinces.", variantes:[
+    {nom:'Tissu tencel, lin et coton, 2 m', court:"le tissu tencel", img:'tissu-fauve', url:'https://www.maison-fauve.com/products/tissu-doupion-de-tencel-lin-et-coton-plusieurs-couleurs', prix:53.8, offert:true, usage:"Un tissu fluide de la marque Maison Fauve, pour coudre ses vêtements, en neuf couleurs."},
+    {nom:'2 patrons Maison Fauve', court:"les patrons", prix:35.8, offert:true, usage:"Deux patrons de couture de la marque française : une surchemise et un pantalon taille haute à pinces.", variantes:[
       {t:'Surchemise Ex Libris', img:'patron-exlibris', url:'https://www.maison-fauve.com/products/patron-couture-surchemise-ex-libris-patron-pochette'},
       {t:'Pantalon Andrea', img:'patron-andrea', url:'https://www.maison-fauve.com/products/patron-couture-pantalon-andrea-patron-pochette'}]},
-    {nom:'Ciseaux de couturière', img:'ciseaux', url:'https://sajou.fr/fr/paires-de-ciseaux-couture-et-tailleur/4775-paire-de-ciseaux-couture-bancal-20-cm-3665546015122.html', prix:58.5, usage:"De beaux ciseaux à tissu de la Maison Sajou, pour couper ses coupons."}
+    {nom:'Ciseaux de couturière', court:"les ciseaux de couturière", img:'ciseaux', url:'https://sajou.fr/fr/paires-de-ciseaux-couture-et-tailleur/4775-paire-de-ciseaux-couture-bancal-20-cm-3665546015122.html', prix:58.5, offert:true, usage:"De beaux ciseaux à tissu de la Maison Sajou, pour couper ses coupons."}
   ]},
   {cat:'Cuisine & épicerie', c:'var(--olive)', items:[
-    {nom:'2 couteaux Opinel Les Forgés 1890', prix:210, usage:"Un couteau de chef et un couteau d'office forgés en France, manche en hêtre : de vrais couteaux de pro, beaux à laisser en vue.", variantes:[
+    {nom:'2 couteaux Opinel Les Forgés 1890', court:"les couteaux Opinel", prix:210, offert:true, autre:true, usage:"Un couteau de chef et un couteau d'office forgés en France, manche en hêtre : de vrais couteaux de pro, beaux à laisser en vue.", variantes:[
       {t:'Chef', img:'couteau-chef', url:'https://www.opinel.com/fr-fr/couteaux-cuisine/collection-les-forges-1890/couteau-chef-les-forges-1890'},
       {t:'Office', img:'couteau-office', url:'https://www.opinel.com/fr-fr/couteaux-cuisine/collection-les-forges-1890/couteau-office-les-forges-1890'}]},
-    {nom:'Barre aimantée en noyer, 40 cm', img:'barre-noyer', url:'https://www.amazon.fr/dp/B0B145CMXS', prix:25.64, usage:"Une fine barre de noyer massif, aux aimants cachés dans le bois : discrète au mur, on n'y voit pas de métal."},
-    {nom:'2 poêles ZWILLING Pro, Ø\u00a028\u00a0cm, et leurs couvercles', prix:265.9, usage:"En inox 18/10, avec un antiadhésif céramique sans PFAS : rien n'accroche et c'est sain. Chacune a son couvercle en verre.", variantes:[
+    {nom:'Barre aimantée en noyer, 40 cm', court:"la barre aimantée", img:'barre-noyer', url:'https://www.amazon.fr/dp/B0B145CMXS', prix:25.64, offert:true, usage:"Une fine barre de noyer massif, aux aimants cachés dans le bois : discrète au mur, on n'y voit pas de métal."},
+    {nom:'2 poêles ZWILLING Pro, Ø\u00a028\u00a0cm, et leurs couvercles', court:"les poêles", prix:265.9, offert:true, autre:true, usage:"En inox 18/10, avec un antiadhésif céramique sans PFAS : rien n'accroche et c'est sain. Chacune a son couvercle en verre.", variantes:[
       {t:'Poêle', img:'poele-zwilling-pro', url:'https://www.zwilling.com/fr/zwilling-pro-poele-28-cm-inox-18%2F10-noir-argente/1036220.html'},
       {t:'Couvercle', img:'couvercle-zwilling-28', url:'https://www.zwilling.com/fr/zwilling-twin-specials-couvercle-28-cm-verre-40990-928-0/40990-928-0.html'}]},
-    {nom:'Épices Roellinger : coffret Les Essentielles et Poudre du Vent', prix:62.2, usage:"La sélection de la maison Roellinger : Retour des Indes pour le poisson, Grande Caravane pour l'agneau, Gallo pour la volaille, Alizés et Serinissima pour les salades, Défendue pour les desserts aux fruits, et la Poudre du Vent pour les pâtes.", variantes:[
+    {nom:'Épices Roellinger : coffret Les Essentielles et Poudre du Vent', court:"les épices Roellinger", prix:62.2, offert:true, autre:true, usage:"La sélection de la maison Roellinger : Retour des Indes pour le poisson, Grande Caravane pour l'agneau, Gallo pour la volaille, Alizés et Serinissima pour les salades, Défendue pour les desserts aux fruits, et la Poudre du Vent pour les pâtes.", variantes:[
       {t:'Coffret', img:'coffret-essentielles', url:'https://www.epices-roellinger.com/fr/products/coffret-les-essentielles'},
       {t:'Pâtes', img:'epice-vent', url:'https://www.epices-roellinger.com/fr/products/poudre-du-vent'}]},
     {nom:'Pince de dressage de chef', court:"la pince de dressage", img:'pince', url:'https://www.amazon.fr/dp/B01HMCLOGC', prix:21.32, offert:true, usage:"Une longue pince fine De Buyer, comme celle des cuisiniers pros, pour dresser ses assiettes au millimètre."},
@@ -1562,7 +1565,7 @@ const CADEAUX = [
   ]}
 ];
 
-const REUNIS = 810;
+const REUNIS = 1810;
 const RIB = {titulaire:'Baptiste MAZAS', iban:'FR76 3000 4008 0400 0032 4897 836', bic:'BNPAFRPPXXX'};
 
 const eur = n => n.toLocaleString('fr-FR', {minimumFractionDigits: Number.isInteger(n) ? 0 : 2, maximumFractionDigits: 2}) + ' €';
@@ -1609,6 +1612,14 @@ CADEAUX.forEach(g => {
       });
       corps.appendChild(l);
     }
+    if (!i.offert && i.reuni) {
+      const j = el('span', 'cadeau-jauge');
+      j.setAttribute('role', 'img');
+      j.setAttribute('aria-label', eur(i.reuni) + ' réunis sur ' + eur(i.prix));
+      const r = el('span'); r.style.width = Math.min(100, i.reuni / i.prix * 100).toFixed(1) + '%';
+      j.appendChild(r);
+      corps.append(j, el('span', 'cadeau-reuni', eur(i.reuni) + ' déjà réunis, plus que ' + eur(Math.round((i.prix - i.reuni) * 100) / 100)));
+    }
     const cote = el('div', 'cadeau-cote');
     cote.appendChild(el('span', 'cadeau-prix', eur(i.prix)));
     if (i.offert) cote.appendChild(el('span', 'badge badge-offert', 'Offert'));
@@ -1628,12 +1639,15 @@ CADEAUX.forEach(g => {
 
 document.getElementById('reunis-montant').textContent = eur(REUNIS);
 (() => {
-  const offerts = CADEAUX.flatMap(c => c.items).filter(i => i.offert).sort((a, b) => b.prix - a.prix);
+  const tous = CADEAUX.flatMap(c => c.items);
+  const offerts = tous.filter(i => i.offert && !i.autre).sort((a, b) => b.prix - a.prix);
   if (!offerts.length) return;
   const noms = offerts.map(i => i.court || i.nom);
-  const liste = noms.length > 1 ? noms.slice(0, -1).join(', ') + ' et ' + noms[noms.length - 1] : noms[0];
-  const reste = Math.floor(REUNIS - offerts.reduce((t, i) => t + i.prix, 0));
-  document.getElementById('reunis-equiv').textContent = 'Soit déjà ' + liste + (reste >= 1 ? ', plus ' + eur(reste) + ' pour la suite.' : '.');
+  const et = a => a.length > 1 ? a.slice(0, -1).join(', ') + ' et ' + a[a.length - 1] : a[0];
+  const partiels = tous.filter(i => !i.offert && i.reuni);
+  const reste = Math.floor(REUNIS - offerts.reduce((t, i) => t + i.prix, 0) - partiels.reduce((t, i) => t + i.reuni, 0));
+  const plus = partiels.map(i => eur(i.reuni) + ' pour ' + (i.court || i.nom)).concat(reste >= 1 ? [eur(reste) + ' pour la suite'] : []);
+  document.getElementById('reunis-equiv').textContent = 'Soit déjà ' + (noms.length > 8 ? noms.length + ' cadeaux de la liste, dont ' + et(noms.slice(0, 3)) : et(noms)) + (plus.length ? ', plus ' + et(plus) : '') + '.';
 })();
 
 const filtresCadeaux = document.getElementById('filtres-cadeaux');
