@@ -857,7 +857,7 @@ dialog.fiche{overscroll-behavior:contain}
             <p>De la terre au tour, des pinceaux aux ciseaux : de quoi créer de A à Z. Si le cœur vous en dit, vous pouvez participer à ce projet.</p>
           </div>
           <div class="reunis">
-            <p class="reunis-txt"><strong id="reunis-montant">760 €</strong> déjà réunis pour l’atelier, merci ♥</p>
+            <p class="reunis-txt"><strong id="reunis-montant">810 €</strong> déjà réunis pour l’atelier, merci ♥</p>
             <p class="reunis-equiv" id="reunis-equiv"></p>
           </div>
         </div>
@@ -1541,13 +1541,9 @@ const CADEAUX = [
     {nom:'2 poêles en inox De Buyer, Ø\u00a028\u00a0cm, avec couvercles', prix:527, usage:"Deux grandes poêles Affinity en inox poli miroir, 5 couches, fabriquées en France, chacune avec son couvercle : pour saisir, dorer et mijoter, et pour durer.", variantes:[
       {t:'Poêle', img:'poele-affinity', url:'https://www.debuyer.com/fr/poele-ronde-affinity-o-28cm-4347.html'},
       {t:'Couvercle', img:'couvercle-affinity', url:'https://www.debuyer.com/fr/couvercle-inox-pontet-fonte-d-inox-783.html'}]},
-    {nom:'Épices Roellinger, 6 pots', prix:58.3, usage:"Les mélanges du chef Olivier Roellinger : Retour des Indes pour le poisson, Grande Caravane pour la viande, Alizés pour les salades, Poudre du Vent pour les pâtes, Équinoxiale pour les desserts, et l'infusion Rêves d'étoiles.", variantes:[
-      {t:'Poisson', img:'epice-retour-indes', url:'https://www.epices-roellinger.com/fr/products/poudre-retour-des-indes-c'},
-      {t:'Viande', img:'epice-grande-caravane', url:'https://www.epices-roellinger.com/fr/products/poudre-grande-caravane-c'},
-      {t:'Salades', img:'epice-alizes', url:'https://www.epices-roellinger.com/fr/products/poudre-des-alizes-c'},
-      {t:'Pâtes', img:'epice-vent', url:'https://www.epices-roellinger.com/fr/products/poudre-du-vent'},
-      {t:'Desserts', img:'epice-equinoxiale', url:'https://www.epices-roellinger.com/fr/products/poudre-equinoxiale'},
-      {t:'Infusion', img:'infusion-reves-etoiles', url:'https://www.epices-roellinger.com/fr/products/reves-d-etoiles-c'}]},
+    {nom:'Épices Roellinger : coffret Les Essentielles et Poudre du Vent', prix:62.2, usage:"La sélection de la maison Roellinger : Retour des Indes pour le poisson, Grande Caravane pour l'agneau, Gallo pour la volaille, Alizés et Serinissima pour les salades, Défendue pour les desserts aux fruits, et la Poudre du Vent pour les pâtes.", variantes:[
+      {t:'Coffret', img:'coffret-essentielles', url:'https://www.epices-roellinger.com/fr/products/coffret-les-essentielles'},
+      {t:'Pâtes', img:'epice-vent', url:'https://www.epices-roellinger.com/fr/products/poudre-du-vent'}]},
     {nom:'Pince de dressage de chef', img:'pince', url:'https://www.amazon.fr/dp/B01HMCLOGC', prix:21.32, usage:"Une longue pince fine De Buyer, comme celle des cuisiniers pros, pour dresser ses assiettes au millimètre."},
     {nom:'100 sachets kraft à fenêtre', img:'sachets', url:'https://www.amazon.fr/dp/B0FHHWVSRW', prix:11.99, usage:"Pour emballer ses douceurs maison."}
   ]},
@@ -1566,7 +1562,7 @@ const CADEAUX = [
   ]}
 ];
 
-const REUNIS = 760;
+const REUNIS = 810;
 const RIB = {titulaire:'Baptiste MAZAS', iban:'FR76 3000 4008 0400 0032 4897 836', bic:'BNPAFRPPXXX'};
 
 const eur = n => n.toLocaleString('fr-FR', {minimumFractionDigits: Number.isInteger(n) ? 0 : 2, maximumFractionDigits: 2}) + ' €';
