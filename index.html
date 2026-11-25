@@ -1507,20 +1507,20 @@ const CADEAUX = [
     {nom:'3 outils à tournasser', img:'tournasser', url:'https://ceradel.fr/products/lot-de-3-outils-a-tournaser-doubles-xiem', prix:47.99, usage:"Pour creuser et finir le pied de ses bols et de ses tasses."},
     {nom:'Fil à couper à poignées en bois', img:'fil-p44', url:'https://ceradel.fr/products/fil-a-couper-p44', prix:2.2, usage:"Pour couper la terre et décoller les pièces du tour."},
     {nom:'Éponge à porcelaine', img:'eponge', url:'https://ceradel.fr/products/eponge-pour-porcelaine-xiem', prix:14.5, usage:"Pour les finitions sur la porcelaine."},
-    {nom:'Sac à outils de poterie', img:'sac', url:'https://ceradel.fr/products/sac-pour-la-poterie-xiem', prix:48, usage:"Pour ranger tous ses outils, et les emporter."},
+    {nom:'Sac à outils de poterie', court:"le sac à outils", img:'sac', url:'https://ceradel.fr/products/sac-pour-la-poterie-xiem', prix:48, offert:true, usage:"Pour ranger tous ses outils, et les emporter."},
     {nom:"Tabouret d'atelier ancien, à vis", img:'tabouret-vis', url:'https://www.leboncoin.fr/ad/ameublement/3259270839', prix:70, usage:"Un vrai tabouret d'atelier en bois massif, patiné par les années : sa grande vis le règle de 48 à 69 cm, pour le tour comme pour la table."},
     {nom:'Seau en zinc à l’ancienne', img:'seau-zinc', url:'https://www.amazon.fr/dp/B00VTSADCW', prix:18.9, usage:"Pour l'eau du tour : un beau seau en zinc, avec sa poignée en bois."},
     {nom:'Pot en grès pour la terre, 10 L', img:'pot-gres', url:'https://www.amazon.fr/dp/B00445RW44', prix:69.99, usage:"En grès, avec un couvercle à rigole d'eau qui ferme à l'air : la terre y reste humide et prête à travailler."},
     {nom:'Tablier en lin rayé rose', img:'tablier', url:'https://merci-merci.com/products/tablier-en-lin-lave-rayures-trame-rose', prix:65, usage:"Pour travailler la terre sans se salir."}
   ]},
   {cat:'Peinture', c:'var(--citron)', items:[
-    {nom:'3 toiles en lin sur châssis', prix:49.55, usage:"Trois formats en vrai lin, de la petite toile à celle qu'on expose.", variantes:[
+    {nom:'3 toiles en lin sur châssis', court:"les toiles en lin", prix:49.55, offert:true, usage:"Trois formats en vrai lin, de la petite toile à celle qu'on expose.", variantes:[
       {t:'Petite (6F)', img:'toile-6f', url:'https://www.amazon.fr/dp/B073HLSDQF'},
       {t:'Moyenne (8F)', img:'toile-8f', url:'https://www.amazon.fr/dp/B073HHXHXK'},
       {t:'Grande (12P)', img:'toile-12p', url:'https://www.amazon.fr/dp/B073HQCF9B'}]},
     {nom:'Coffret de gouache, 12 couleurs', img:'gouache', url:'https://monoe-shop.com/products/coffret-12-couleurs-gouache-extra-fine-rebecca-green-x-holbein', prix:60.5, usage:"Les 12 teintes choisies par l'illustratrice Rebecca Green : une gouache mate et veloutée."},
-    {nom:'5 pinceaux Raphaël', img:'pinceaux', url:'https://www.amazon.fr/dp/B084CTPVBN', prix:33.88, usage:"De beaux pinceaux français pour ses toiles."},
-    {nom:'Couteaux à peindre Sennelier (× 3)', img:'couteaux', url:'https://www.surdiscount.com/fr/couteaux/26639-couteau-a-peindre-sennelier-n1013-manche-bois-lame-acier-3046450369059.html', prix:13.5, usage:"Pour peindre en matière, au couteau."}
+    {nom:'5 pinceaux Raphaël', court:"les pinceaux Raphaël", img:'pinceaux', url:'https://www.amazon.fr/dp/B084CTPVBN', prix:33.88, offert:true, usage:"De beaux pinceaux français pour ses toiles."},
+    {nom:'Couteaux à peindre Sennelier (× 3)', court:"les couteaux à peindre", img:'couteaux', url:'https://www.surdiscount.com/fr/couteaux/26639-couteau-a-peindre-sennelier-n1013-manche-bois-lame-acier-3046450369059.html', prix:13.5, offert:true, usage:"Pour peindre en matière, au couteau."}
   ]},
   {cat:'Couture', c:'var(--brique)', items:[
     {nom:'Tissu Maison Fauve, 2,5 m', prix:59.75, usage:"De quoi coudre la surchemise ou le pantalon : un velours côtelé uni, ou une gabardine de coton à motif tigre.", variantes:[
@@ -1544,12 +1544,12 @@ const CADEAUX = [
     {nom:'Épices Roellinger : coffret Les Essentielles et Poudre du Vent', prix:62.2, usage:"La sélection de la maison Roellinger : Retour des Indes pour le poisson, Grande Caravane pour l'agneau, Gallo pour la volaille, Alizés et Serinissima pour les salades, Défendue pour les desserts aux fruits, et la Poudre du Vent pour les pâtes.", variantes:[
       {t:'Coffret', img:'coffret-essentielles', url:'https://www.epices-roellinger.com/fr/products/coffret-les-essentielles'},
       {t:'Pâtes', img:'epice-vent', url:'https://www.epices-roellinger.com/fr/products/poudre-du-vent'}]},
-    {nom:'Pince de dressage de chef', img:'pince', url:'https://www.amazon.fr/dp/B01HMCLOGC', prix:21.32, usage:"Une longue pince fine De Buyer, comme celle des cuisiniers pros, pour dresser ses assiettes au millimètre."},
-    {nom:'100 sachets kraft à fenêtre', img:'sachets', url:'https://www.amazon.fr/dp/B0FHHWVSRW', prix:11.99, usage:"Pour emballer ses douceurs maison."}
+    {nom:'Pince de dressage de chef', court:"la pince de dressage", img:'pince', url:'https://www.amazon.fr/dp/B01HMCLOGC', prix:21.32, offert:true, usage:"Une longue pince fine De Buyer, comme celle des cuisiniers pros, pour dresser ses assiettes au millimètre."},
+    {nom:'100 sachets kraft à fenêtre', court:"les sachets kraft", img:'sachets', url:'https://www.amazon.fr/dp/B0FHHWVSRW', prix:11.99, offert:true, usage:"Pour emballer ses douceurs maison."}
   ]},
   {cat:'Photo', c:'var(--kraft)', items:[
-    {nom:'Fond noir pour les photos', img:'fond-noir', url:'https://www.amazon.fr/dp/B086JWK9TD', prix:17.65, usage:"Pour photographier ses plats, ses bocaux et ses céramiques sur un fond noir mat."},
-    {nom:'Réflecteur photo', img:'reflecteur', url:'https://www.amazon.fr/dp/B0CJ8PNJLJ', prix:25.95, usage:"Pour adoucir les ombres sur ses photos."}
+    {nom:'Fond noir pour les photos', court:"le fond noir", img:'fond-noir', url:'https://www.amazon.fr/dp/B086JWK9TD', prix:17.65, offert:true, usage:"Pour photographier ses plats, ses bocaux et ses céramiques sur un fond noir mat."},
+    {nom:'Réflecteur photo', court:"le réflecteur", img:'reflecteur', url:'https://www.amazon.fr/dp/B0CJ8PNJLJ', prix:25.95, offert:true, usage:"Pour adoucir les ombres sur ses photos."}
   ]},
   {cat:'Aménagement', c:'var(--cobalt)', note:"Ce qui est marqué « Offert » est déjà pris en charge.", items:[
     {nom:'3 étagères en acier galvanisé, 1 m', court:"les étagères", img:'etageres-1m', url:'https://www.castorama.fr/etagere-de-garage-en-acier-galvanise-h-180-x-l-100-x-p-50-cm-schulte-regalwelt-powermax/4004514122698_CAFR.prd', prix:239.7, offert:true, usage:"Deux au fond de la cave, une à l'entrée : pour les terres, les pièces qui sèchent, les pots, et les valises et cartons qui ne traîneront plus par terre."},
