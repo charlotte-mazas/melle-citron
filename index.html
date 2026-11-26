@@ -1649,6 +1649,11 @@ document.getElementById('reunis-montant').textContent = eur(REUNIS);
   const plus = partiels.map(i => eur(i.reuni) + ' pour ' + (i.court || i.nom)).concat(reste >= 1 ? [eur(reste) + ' pour la suite'] : []);
   document.getElementById('reunis-equiv').textContent = 'Soit déjà ' + (noms.length > 8 ? noms.length + ' cadeaux de la liste, dont ' + et(noms.slice(0, 3)) : et(noms)) + (plus.length ? ', plus ' + et(plus) : '') + '.';
 })();
+if (/github\.io$/.test(location.hostname)) {
+  const compteur = new Image();
+  compteur.referrerPolicy = 'no-referrer';
+  compteur.src = 'https://hits.sh/charlotte-mazas.github.io/melle-citron.svg';
+}
 
 const filtresCadeaux = document.getElementById('filtres-cadeaux');
 CADEAUX.forEach((g, n) => {
