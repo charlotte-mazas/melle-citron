@@ -860,7 +860,7 @@ dialog.fiche{overscroll-behavior:contain}
             <p>De la terre au tour, des pinceaux aux ciseaux : de quoi créer de A à Z. Si le cœur vous en dit, vous pouvez participer à ce projet.</p>
           </div>
           <div class="reunis">
-            <p class="reunis-txt"><strong id="reunis-montant">1 960 €</strong> déjà réunis pour l’atelier, merci ♥</p>
+            <p class="reunis-txt"><strong id="reunis-montant">2 370 €</strong> déjà réunis pour l’atelier, merci ♥</p>
             <p class="reunis-equiv" id="reunis-equiv"></p>
           </div>
         </div>
@@ -1559,13 +1559,13 @@ const CADEAUX = [
     {nom:"2 spots d'atelier et leurs ampoules", court:"les spots", img:'spots', url:'https://www.ikea.com/fr/fr/p/hektar-applique-spot-a-pince-gris-fonce-80215308/', prix:54.97, offert:true, usage:"Des spots industriels en métal, en lumière chaude : l'un au-dessus du tour, l'autre sur la grande table."},
     {nom:'Panneau à outils en bois', court:"le panneau à outils", img:'panneau', url:'https://www.ikea.com/fr/fr/p/skadis-panneau-perfore-combinaison-bois-s09217062/', prix:34, offert:true, usage:"Au-dessus du tour, pour avoir tous ses outils de poterie sous la main."},
     {nom:'2 tréteaux en bouleau', court:"les tréteaux", img:'treteaux', url:'https://www.ikea.com/fr/fr/p/mittback-treteau-bouleau-30459997/', prix:60, offert:true, usage:"Sous le grand plateau en bois : sa table pour peindre, coudre et modeler."},
-    {nom:'2 malles en aluminium, 93 L', img:'malle-alu', url:'https://www.amazon.fr/dp/B07LCH85V4', prix:322.58, usage:"Étanches à l'humidité de la cave : pour ranger tissus, papiers et toiles bien à l'abri."},
+    {nom:'2 malles en aluminium, 93 L', court:"les malles", img:'malle-alu', url:'https://www.amazon.fr/dp/B07LCH85V4', prix:322.58, offert:true, usage:"Étanches à l'humidité de la cave : pour ranger tissus, papiers et toiles bien à l'abri."},
     {nom:'Déshumidificateur', court:"le déshumidificateur", img:'deshumidificateur', url:'https://www.amazon.fr/dp/B07BQTMKXG', prix:111.99, offert:true, usage:"Pour une cave saine, où la terre, les toiles et le tissu ne prennent pas l'humidité."},
     {nom:'Hygromètre', court:"l'hygromètre", img:'hygrometre', url:'https://www.amazon.fr/dp/B01H1R0K68', prix:11.99, offert:true, usage:"Pour surveiller l'humidité de l'atelier."}
   ]}
 ];
 
-const REUNIS = 1960;
+const REUNIS = 2370;
 const RIB = {titulaire:'Baptiste MAZAS', iban:'FR76 3000 4008 0400 0032 4897 836', bic:'BNPAFRPPXXX'};
 
 const eur = n => n.toLocaleString('fr-FR', {minimumFractionDigits: Number.isInteger(n) ? 0 : 2, maximumFractionDigits: 2}) + ' €';
