@@ -383,6 +383,33 @@ a.cadeau-nom:hover{color:var(--cobalt);text-decoration:underline;text-decoration
 .reunis-equiv{margin:0;font-size:.86rem;line-height:1.45;color:#4a4036}
 .reunis-equiv:empty{display:none}
 .reunis-txt strong{font-family:var(--f-serif);font-weight:400;font-size:1.75rem;line-height:1;color:var(--encre);margin-right:5px}
+.reunis-equiv a{color:var(--cobalt);font-weight:650;text-underline-offset:3px;white-space:nowrap}
+.bilan{margin-top:44px;padding:clamp(20px,3.5vw,36px);background:#fff;border-radius:6px;box-shadow:inset 0 0 0 1.5px var(--encre)}
+.bilan h4{margin:0 0 18px;font-family:var(--f-display);font-stretch:125%;font-weight:850;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase}
+.bilan-chiffres{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:0 0 28px}
+.bilan-chiffres div{background:var(--lin);border-radius:6px;padding:14px 16px}
+.bilan-chiffres dt{font-family:var(--f-display);font-stretch:112%;font-weight:700;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--gris)}
+.bilan-chiffres dd{margin:8px 0 0;font-family:var(--f-serif);font-size:1.9rem;line-height:1;font-variant-numeric:tabular-nums}
+.bilan-chiffres small{display:block;margin-top:6px;font-family:var(--f-body);font-size:.8rem;line-height:1.3;color:#4a4036}
+.bilan-chiffres .bilan-reste{background:var(--citron)}
+.bilan-chiffres .bilan-reste dt,.bilan-chiffres .bilan-reste small{color:var(--encre)}
+.bilan-detail{columns:2 280px;column-gap:44px}
+.bilan-groupe{break-inside:avoid;margin:0 0 22px}
+.bilan-groupe h5{display:flex;align-items:center;gap:8px;margin:0 0 6px;font-family:var(--f-display);font-stretch:118%;font-weight:800;font-size:.7rem;letter-spacing:.09em;text-transform:uppercase}
+.bilan-groupe h5::before{content:"";flex:none;width:9px;height:9px;border-radius:50%;background:var(--c,var(--encre))}
+.bilan-groupe h5 span{margin-left:auto;font-family:var(--f-serif);font-style:italic;font-weight:400;font-size:1rem;letter-spacing:0;text-transform:none;color:var(--gris)}
+.bilan-groupe ul{list-style:none;margin:0;padding:0;border-top:1.5px solid var(--encre)}
+.bilan-groupe li{display:flex;align-items:baseline;gap:10px;padding:7px 0;border-bottom:1px solid rgba(21,17,14,.12);font-size:.9rem;line-height:1.3}
+.bilan-groupe li::before{content:"✓";flex:none;color:var(--olive);font-weight:700}
+.bilan-groupe li span:first-of-type{flex:1;min-width:0}
+.bilan-groupe li span:last-of-type{white-space:nowrap;font-variant-numeric:tabular-nums;color:#3b332b}
+.bilan-autres{margin:4px 0 0;font-size:.9rem;line-height:1.45;color:#4a4036}
+@media (max-width:540px){
+  .bilan-chiffres{grid-template-columns:1fr;gap:8px}
+  .bilan-chiffres div{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px}
+  .bilan-chiffres dd{margin:0;text-align:right;font-size:1.55rem}
+  .bilan-chiffres small{margin-top:4px}
+}
 @media (max-width:540px){
   .cadeau{grid-template-columns:56px minmax(0,1fr);gap:10px 14px;align-items:start}
   .cadeau-vignette{width:56px;height:56px}
@@ -857,7 +884,7 @@ dialog.fiche{overscroll-behavior:contain}
         <div class="cadeaux-tete">
           <div>
             <h3>Ce qu'il faut pour <em>l'atelier</em></h3>
-            <p>De la terre au tour, des pinceaux aux ciseaux : de quoi créer de A à Z. Si le cœur vous en dit, vous pouvez participer à ce projet.</p>
+            <p>De la terre aux mirettes, des pinceaux aux ciseaux : de quoi créer de A à Z. Si le cœur vous en dit, vous pouvez participer à ce projet.</p>
           </div>
           <div class="reunis">
             <p class="reunis-txt"><strong id="reunis-montant">2 370 €</strong> déjà réunis pour l’atelier, merci ♥</p>
@@ -866,6 +893,7 @@ dialog.fiche{overscroll-behavior:contain}
         </div>
         <div class="filtres filtres-cadeaux" id="filtres-cadeaux" role="group" aria-label="Catégories de la liste"></div>
         <div id="liste-cadeaux"></div>
+        <div class="bilan" id="bilan" hidden></div>
       </div>
 
       <div class="cagnotte" id="cagnotte">
@@ -1483,7 +1511,6 @@ fiche.addEventListener('close', () => { if (retour) retour.focus(); });
 (() => {
 const CADEAUX = [
   {cat:'Céramique', c:'var(--terre)', items:[
-    {nom:'Tour de potier Shimpo Whisper-T', img:'tour-shimpo', url:'https://www.cigaleetfourmi.fr/tours/180-tour-shimpo-whisper-t.html', prix:1495, usage:"Le tour japonais que recommandent les potiers : très silencieux, assez puissant et réglable en hauteur, pour travailler confortablement pendant des années."},
     {nom:'Tournette en fonte, Ø 22 cm', court:"la tournette", img:'tournette', url:'https://ceradel.fr/products/tournette-haute-o220mm-e-13d', prix:69.86, offert:true, usage:"Un plateau tournant lourd et stable, pour monter, décorer et émailler ses pièces à la main."},
     {nom:'Grès caramel, 12 kg', court:"le grès caramel", img:'gres-caramel', url:'https://ceradel.fr/products/toffee-gres-caramel-cham-0-0-2mm', prix:21.79, offert:true, usage:"Une terre qui cuit du beige avoine au brun caramel."},
     {nom:'Grès noir, 12 kg', court:"le grès noir", img:'gres-noir', url:'https://ceradel.fr/products/prni-gres-noir-cham-0-0-2', prix:21.79, offert:true, usage:"Une terre d'un noir intense après cuisson."},
@@ -1540,7 +1567,7 @@ const CADEAUX = [
       {t:'Chef', img:'couteau-chef', url:'https://www.opinel.com/fr-fr/couteaux-cuisine/collection-les-forges-1890/couteau-chef-les-forges-1890'},
       {t:'Office', img:'couteau-office', url:'https://www.opinel.com/fr-fr/couteaux-cuisine/collection-les-forges-1890/couteau-office-les-forges-1890'}]},
     {nom:'Barre aimantée en noyer, 40 cm', court:"la barre aimantée", img:'barre-noyer', url:'https://www.amazon.fr/dp/B0B145CMXS', prix:25.64, offert:true, usage:"Une fine barre de noyer massif, aux aimants cachés dans le bois : discrète au mur, on n'y voit pas de métal."},
-    {nom:'2 poêles ZWILLING Pro, Ø\u00a028\u00a0cm, et leurs couvercles', court:"les poêles", prix:265.9, offert:true, autre:true, usage:"En inox 18/10, avec un antiadhésif céramique sans PFAS : rien n'accroche et c'est sain. Chacune a son couvercle en verre.", variantes:[
+    {nom:'2 poêles ZWILLING Pro, Ø\u00a028\u00a0cm, et leurs couvercles', court:"les poêles Zwilling", prix:265.9, offert:true, autre:true, usage:"En inox 18/10, avec un antiadhésif céramique sans PFAS : rien n'accroche et c'est sain. Chacune a son couvercle en verre.", variantes:[
       {t:'Poêle', img:'poele-zwilling-pro', url:'https://www.zwilling.com/fr/zwilling-pro-poele-28-cm-inox-18%2F10-noir-argente/1036220.html'},
       {t:'Couvercle', img:'couvercle-zwilling-28', url:'https://www.zwilling.com/fr/zwilling-twin-specials-couvercle-28-cm-verre-40990-928-0/40990-928-0.html'}]},
     {nom:'Épices Roellinger : coffret Les Essentielles et Poudre du Vent', court:"les épices Roellinger", prix:62.2, offert:true, autre:true, usage:"La sélection de la maison Roellinger : Retour des Indes pour le poisson, Grande Caravane pour l'agneau, Gallo pour la volaille, Alizés et Serinissima pour les salades, Défendue pour les desserts aux fruits, et la Poudre du Vent pour les pâtes.", variantes:[
@@ -1638,15 +1665,60 @@ CADEAUX.forEach(g => {
 
 document.getElementById('reunis-montant').textContent = eur(REUNIS);
 (() => {
-  const tous = CADEAUX.flatMap(c => c.items);
-  const offerts = tous.filter(i => i.offert && !i.autre).sort((a, b) => b.prix - a.prix);
-  if (!offerts.length) return;
-  const noms = offerts.map(i => i.court || i.nom);
+  const cts = n => Math.round(n * 100) / 100;
+  const somme = a => cts(a.reduce((t, i) => t + i.prix, 0));
   const et = a => a.length > 1 ? a.slice(0, -1).join(', ') + ' et ' + a[a.length - 1] : a[0];
-  const partiels = tous.filter(i => !i.offert && i.reuni);
-  const reste = Math.floor(REUNIS - offerts.reduce((t, i) => t + i.prix, 0) - partiels.reduce((t, i) => t + i.reuni, 0));
-  const plus = partiels.map(i => eur(i.reuni) + ' pour ' + (i.court || i.nom)).concat(reste >= 1 ? [eur(reste) + ' pour la suite'] : []);
-  document.getElementById('reunis-equiv').textContent = 'Soit déjà ' + (noms.length > 8 ? noms.length + ' cadeaux de la liste, dont ' + et(noms.slice(0, 3)) : et(noms)) + (plus.length ? ', plus ' + et(plus) : '') + '.';
+  const tous = CADEAUX.flatMap(c => c.items);
+  const pot = tous.filter(i => i.offert && !i.autre);
+  if (!pot.length) return;
+  const ailleurs = tous.filter(i => i.offert && i.autre);
+  const ouverts = tous.filter(i => !i.offert);
+  const depense = somme(pot);
+  const reste = cts(REUNIS - depense - ouverts.reduce((t, i) => t + (i.reuni || 0), 0));
+
+  const equiv = document.getElementById('reunis-equiv');
+  equiv.textContent = (ouverts.length ? 'Soit déjà ' : 'Toute la liste est offerte : la cagnotte a payé ') + pot.length + ' cadeaux (' + eur(depense) + ')' + (reste >= 0.01 ? ' et il reste ' + eur(reste) + ' pour la suite. ' : '. ');
+  const voir = el('a', null, 'Voir le bilan');
+  voir.href = '#bilan';
+  equiv.appendChild(voir);
+
+  const bilan = document.getElementById('bilan');
+  const titre = el('h4', null, 'Le bilan de la cagnotte');
+  titre.id = 't-bilan';
+  bilan.setAttribute('aria-labelledby', 't-bilan');
+  const chiffres = el('dl', 'bilan-chiffres');
+  [['Réunis', REUNIS, 'À ce jour, merci ♥', ''],
+   ['Offerts', depense, pot.length + ' cadeaux', ''],
+   ['Il reste', reste, 'Pour la suite de l’atelier', 'bilan-reste']].forEach(([nom, n, note, cls]) => {
+    const d = el('div', cls);
+    const dd = el('dd', null, eur(n));
+    dd.appendChild(el('small', null, note));
+    d.append(el('dt', null, nom), dd);
+    chiffres.appendChild(d);
+  });
+  const eur2 = n => n.toLocaleString('fr-FR', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + ' €';
+  const insecable = s => s.replace(/Ø /g, 'Ø ').replace(/(\d) (cm|m|L|kg)\b/g, '$1 $2');
+  const detail = el('div', 'bilan-detail');
+  CADEAUX.forEach(g => {
+    const items = g.items.filter(i => i.offert && !i.autre);
+    if (!items.length) return;
+    const groupe = el('div', 'bilan-groupe');
+    groupe.style.setProperty('--c', g.c);
+    const h = el('h5', null, g.cat);
+    h.appendChild(el('span', null, eur2(somme(items))));
+    const ul = el('ul');
+    items.forEach(i => {
+      const li = el('li');
+      li.append(el('span', null, insecable(i.nom)), el('span', null, eur2(i.prix)));
+      ul.appendChild(li);
+    });
+    groupe.append(h, ul);
+    detail.appendChild(groupe);
+  });
+  bilan.append(titre, chiffres, detail);
+  if (ailleurs.length) bilan.appendChild(el('p', 'bilan-autres', 'Offerts par ailleurs : ' + et(ailleurs.map(i => i.court || i.nom)) + '.'));
+  if (ouverts.length) bilan.appendChild(el('p', 'bilan-autres', 'Encore à offrir : ' + et(ouverts.map(i => (i.court || i.nom) + ' (' + eur(i.prix) + ')')) + '.'));
+  bilan.hidden = false;
 })();
 if (/github\.io$/.test(location.hostname)) {
   const compteur = new Image();
